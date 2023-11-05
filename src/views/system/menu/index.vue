@@ -2,10 +2,7 @@
   <div>
     <DynamicTable header-title="菜单管理" :data-request="loadTableData" :columns="columns">
       <template #toolbar>
-<!--        <a-button type="primary" :disabled="!$auth('sys.menu.add')" @click="openMenuModal({})">-->
-<!--          新增-->
-<!--        </a-button>-->
-        <a-button type="primary" @click="openMenuModal({})">
+        <a-button type="primary" :disabled="!$auth('system:menu:add')" @click="openMenuModal({})">
           新增
         </a-button>
       </template>
@@ -76,10 +73,10 @@
 
     formRef?.updateSchema([
       {
-        field: 'parentId',
+        field: 'parent_id',
         componentProps: {
-          treeDefaultExpandedKeys: [-1].concat(record?.parent_id || []),
-          treeData: ref([{ id: -1, name: '一级菜单', children: menuTree.value }]),
+          treeDefaultExpandedKeys: [0].concat(record?.parent_id || []),
+          treeData: ref([{ id: 0, name: '一级菜单', children: menuTree.value }]),
         },
       },
     ]);
@@ -112,15 +109,15 @@
       actions: ({ record }) => [
         {
           label: '编辑',
-          // auth: {
-          //   perm: 'sys.menu.update',
-          //   effect: 'disable',
-          // },
+          auth: {
+            perm: 'system:menu:edit',
+            effect: 'disable',
+          },
           onClick: () => openMenuModal(record),
         },
         {
           label: '删除',
-          // auth: 'sys.menu.delete',
+          auth: 'system:menu:del',
           popConfirm: {
             title: '你确定要删除吗？',
             onConfirm: () => delRowConfirm(record),

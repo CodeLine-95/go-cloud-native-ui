@@ -34,7 +34,7 @@ export const useMenuSchemas = (): FormSchema<API.MenuAddParams>[] => [
     },
   },
   {
-    field: 'menu_name',
+    field: 'menu_title',
     component: 'Input',
     label: ({ formModel }) => (isPerm(formModel['menu_type']) ? '权限名称' : '节点名称'),
     rules: [{ required: true, type: 'string' }],
@@ -45,8 +45,8 @@ export const useMenuSchemas = (): FormSchema<API.MenuAddParams>[] => [
     label: '上级节点',
     componentProps: {
       fieldNames: {
-        label: 'menu_title',
-        value: 'menu_id',
+        label: 'name',
+        value: 'id',
       },
       getPopupContainer: () => document.body,
     },

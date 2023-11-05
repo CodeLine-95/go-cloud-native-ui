@@ -24,7 +24,7 @@ export const baseColumns: TableColumnItem[] = [
   {
     title: '名称',
     dataIndex: 'menu_title',
-    width: 240,
+    width: 200,
     fixed: 'left',
   },
   {
@@ -45,25 +45,12 @@ export const baseColumns: TableColumnItem[] = [
   {
     title: '节点路由',
     dataIndex: 'menu_path',
+    width: 200,
     align: 'center',
-    width: 240,
-  },
-  {
-    title: '路由缓存',
-    dataIndex: 'no_cache',
-    align: 'center',
-    width: 80,
-    customRender: ({ record }) => record.menu_type === 'M' && (record.no_cache == 1 ? '是' : '否'),
-  },
-  {
-    title: '文件路径',
-    width: 280,
-    align: 'center',
-    dataIndex: 'component',
   },
   {
     title: '权限',
-    width: 300,
+    width: 240,
     align: 'center',
     dataIndex: 'permission',
     customRender: ({ record }) =>
@@ -76,6 +63,19 @@ export const baseColumns: TableColumnItem[] = [
           ))}
         </div>
       ),
+  },
+  {
+    title: '文件路径',
+    align: 'center',
+    width: 300,
+    dataIndex: 'component',
+  },
+  {
+    title: '路由缓存',
+    dataIndex: 'no_cache',
+    align: 'center',
+    width: 80,
+    customRender: ({ record }) => (record.no_cache == 1 ? '是' : '否'),
   },
   {
     title: '排序号',

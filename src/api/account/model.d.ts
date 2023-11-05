@@ -24,6 +24,11 @@ declare namespace API {
     child_node?: Menu[];
   };
 
+  type PermMenu = {
+    menus: Menu[];
+    perms: string[];
+  };
+
   type AdminUserInfo = {
     create_time: number;
     update_time: number;

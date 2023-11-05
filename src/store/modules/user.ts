@@ -70,8 +70,8 @@ export const useUserStore = defineStore({
     /** 登录成功之后, 获取用户信息以及生成权限路由 */
     async afterLogin() {
       try {
-        const [userInfo, menus] = await Promise.all([getInfo(), permmenu()]);
-        this.perms = [];
+        const [userInfo, { perms, menus }] = await Promise.all([getInfo(), permmenu()]);
+        this.perms = perms;
         this.name = userInfo.user_name;
         this.userInfo = userInfo;
 
@@ -79,7 +79,7 @@ export const useUserStore = defineStore({
         const generatorResult = await generatorDynamicRouter(menus);
         this.menus = generatorResult.menus.filter((item) => !item.meta?.hideInMenu);
 
-        return { menus, userInfo };
+        return { menus, perms, userInfo };
       } catch (error) {
         return Promise.reject(error);
       }

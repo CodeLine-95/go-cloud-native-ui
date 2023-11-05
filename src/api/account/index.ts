@@ -25,7 +25,7 @@ export function getInfo() {
 }
 
 export function permmenu() {
-  return request<API.Menu[]>({
+  return request<API.PermMenu>({
     url: 'role/menu',
     method: 'POST',
   });
