@@ -1,10 +1,10 @@
 {
-  "name": "vue3-antdv-admin",
-  "version": "1.1.0",
+  "name": "cloud-native-ui",
+  "version": "0.0.0",
   "author": {
-    "name": "buqiyuan",
-    "email": "1743369777@qq.com",
-    "url": "https://github.com/buqiyuan"
+    "name": "code line",
+    "email": "1145938682@qq.com",
+    "url": "https://github.com/CodeLine-95"
   },
   "scripts": {
     "bootstrap": "pnpm install",
