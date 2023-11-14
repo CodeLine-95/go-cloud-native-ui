@@ -1,28 +1,10 @@
 import { request } from '@/utils/request';
-// import type { BaseResponse } from '@/utils/request';
 import Api from '@/core/permission/modules/sys/role';
-
-export function getRoleInfo(query: { roleId: number }) {
-  return request<API.RoleInfoResult>({
-    url: Api.info,
-    method: 'get',
-    params: query,
-  });
-}
-
-export function getRoleList(data?: API.PageParams) {
-  return request<API.RoleListResult>({
-    url: Api.list,
-    method: 'get',
-    data,
-  });
-}
-
-export function getRoleListByPage(query: API.PageParams) {
+export function getRoleList(data?: API.PageParams<{ search_key?: string }>) {
   return request({
-    url: Api.page,
-    method: 'get',
-    params: query,
+    url: Api.list,
+    method: 'post',
+    data,
   });
 }
 
@@ -42,7 +24,7 @@ export function createRole(data: API.CreateRoleParams) {
 export function updateRole(data: API.UpdateRoleParams) {
   return request(
     {
-      url: Api.update,
+      url: Api.edit,
       method: 'post',
       data,
     },
@@ -52,10 +34,10 @@ export function updateRole(data: API.UpdateRoleParams) {
   );
 }
 
-export function deleteRole(data: { roleIds: number[] }) {
+export function deleteRole(data: { role_id: number }) {
   return request(
     {
-      url: Api.delete,
+      url: Api.del,
       method: 'post',
       data,
     },

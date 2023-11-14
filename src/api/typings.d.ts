@@ -24,7 +24,7 @@ declare namespace API {
 
   /** 全局通用表格分页请求参数 */
   type PageParams<T = any> = {
-    limit?: number;
+    page_size?: number;
     page?: number;
   } & {
     [P in keyof T]?: T[P];

@@ -16,7 +16,7 @@ const getMenuType = (type) => {
     case 'C':
       return '权限';
     default:
-      return '';
+      return '未知';
   }
 };
 

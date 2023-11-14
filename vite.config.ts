@@ -15,11 +15,6 @@ import type { UserConfig, ConfigEnv } from 'vite';
 
 const CWD = process.cwd();
 
-// 环境变量
-// const BASE_ENV_CONFIG = loadEnv('', CWD);
-// const DEV_ENV_CONFIG = loadEnv('development', CWD);
-// const PROD_ENV_CONFIG = loadEnv('production', CWD);
-
 const __APP_INFO__ = {
   pkg,
   lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
@@ -28,7 +23,7 @@ const __APP_INFO__ = {
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   // 环境变量
-  const { VITE_BASE_URL, VITE_DROP_CONSOLE } = loadEnv(mode, CWD);
+  const { VITE_BASE_URL, VITE_DROP_CONSOLE, VITE_BASE_PORT } = loadEnv(mode, CWD);
 
   const isBuild = command === 'build';
 
@@ -114,24 +109,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             @header-height: 60px; 
           `,
         },
-        // scss: {
-        //   additionalData: `
-        //   @use 'sass:math';
-        //   @import "src/styles/global.scss";
-        //   `,
-        // },
       },
     },
     server: {
       host: '0.0.0.0',
-      port: 8088,
+      port: parseInt(VITE_BASE_PORT) || 8088,
       proxy: {
-        // '/api': {
-        //   target: 'https://nest-api.buqiyuan.site/api/',
-        //   // target: 'http://localhost:7001',
-        //   changeOrigin: true,
-        //   rewrite: (path) => path.replace(/^\/api/, ''),
-        // },
         '/api': {
           target: 'http://localhost:8000/v1',
           changeOrigin: true,
